@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="JS Research Validator Pro - role-based research validation, expert review, pilot testing, methodology alignment, ethics readiness, reporting, QR-linked validity passport." />
+  <title>JS Research Validator Pro</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <section id="publicReportShell" class="public-shell hidden"></section>
+
+  <section id="accessShell" class="access-shell">
+    <div class="access-visual">
+      <div class="orb orb-one"></div>
+      <div class="orb orb-two"></div>
+      <div class="access-brand">
+        <div class="brand-mark">JS</div>
+        <div>
+          <h1>JS Research Validator Pro</h1>
+          <p>Integrated research metadata, validator verification, instrument validation, pilot reliability, ethics, methodology, reporting, and validity passport.</p>
+        </div>
+      </div>
+      <div class="feature-stack">
+        <span>Role-based dashboard</span>
+        <span>Automatic unique project number</span>
+        <span>Validator profile + digital signature</span>
+        <span>QR-linked public report</span>
+      </div>
+    </div>
+
+    <div class="access-card glass">
+      <div class="tab-row" role="tablist">
+        <button class="auth-tab active" data-auth-tab="signin">Sign in</button>
+        <button class="auth-tab" data-auth-tab="applicant">Register Applicant</button>
+        <button class="auth-tab" data-auth-tab="validator">Register Validator</button>
+      </div>
+
+      <form id="loginForm" class="auth-panel active" data-panel="signin">
+        <h2>Secure Access</h2>
+        <label>Role
+          <select id="loginRole">
+            <option value="applicant">Project Applicant / Researcher</option>
+            <option value="validator">Validator</option>
+            <option value="admin">Admin</option>
+          </select>
+        </label>
+        <label id="loginEmailWrap">Registered Email
+          <input id="loginEmail" type="email" autocomplete="username" placeholder="your@email.com" />
+        </label>
+        <label>Secure Access PIN
+          <input id="loginPin" type="password" autocomplete="current-password" placeholder="Enter access PIN" required />
+        </label>
+        <button id="loginButton" type="submit" class="primary full">Unlock</button>
+        <p class="copyright-line">Copyright © Dr. Joko Slamet</p>
+        <p id="loginMessage" class="message"></p>
+      </form>
+
+      <form id="applicantRegisterForm" class="auth-panel" data-panel="applicant">
+        <h2>Project Applicant Registration</h2>
+        <div class="mini-grid">
+          <label>Full Name<input id="regApplicantName" required placeholder="Full name" /></label>
+          <label>Email<input id="regApplicantEmail" type="email" required placeholder="email@institution.ac.id" /></label>
+          <label>Institution<input id="regApplicantInstitution" required placeholder="University / institution" /></label>
+          <label>Department / Faculty<input id="regApplicantDepartment" placeholder="Department / Faculty" /></label>
+          <label>Country<input id="regApplicantCountry" placeholder="Indonesia" /></label>
+          <label>Phone / WhatsApp<input id="regApplicantPhone" placeholder="Optional" /></label>
+          <label>ORCID / Scholar ID<input id="regApplicantOrcid" placeholder="Optional" /></label>
+          <label>Create PIN<input id="regApplicantPin" type="password" required minlength="4" placeholder="Minimum 4 characters" /></label>
+        </div>
+        <label>Research Role / Purpose
+          <textarea id="regApplicantPurpose" rows="3" placeholder="Principal investigator, thesis supervisor, journal author, grant researcher, etc."></textarea>
+        </label>
+        <button type="submit" class="primary full">Create Applicant Account</button>
+        <p id="applicantMessage" class="message"></p>
+      </form>
+
+      <form id="validatorRegisterForm" class="auth-panel" data-panel="validator">
+        <h2>Validator Registration</h2>
+        <div class="mini-grid">
+          <label>Full Name<input id="regValidatorName" required placeholder="Full name with title" /></label>
+          <label>Email<input id="regValidatorEmail" type="email" required placeholder="validator@email.com" /></label>
+          <label>Highest Degree<input id="regValidatorDegree" placeholder="PhD / EdD / MA / MSc" /></label>
+          <label>Affiliation<input id="regValidatorAffiliation" required placeholder="Institution" /></label>
+          <label>Department / Unit<input id="regValidatorDepartment" placeholder="Department / Unit" /></label>
+          <label>Country<input id="regValidatorCountry" placeholder="Country" /></label>
+          <label>Years of Expertise<input id="regValidatorYears" type="number" min="0" placeholder="e.g., 8" /></label>
+          <label>Create PIN<input id="regValidatorPin" type="password" required minlength="4" placeholder="Minimum 4 characters" /></label>
+        </div>
+        <label>Field Expertise
+          <textarea id="regValidatorFields" rows="3" placeholder="ELT, Applied Linguistics, ESP, Educational Technology, Statistics, Qualitative Research, R&D, etc."></textarea>
+        </label>
+        <label>Instrument / Method Expertise
+          <textarea id="regValidatorMethods" rows="3" placeholder="Questionnaire validation, rubric development, interview protocol, mixed methods, reliability, CFA, qualitative trustworthiness, etc."></textarea>
+        </label>
+        <label>Conflict of Interest Declaration
+          <textarea id="regValidatorConflict" rows="2" placeholder="Declare potential conflicts or write: No conflict of interest."></textarea>
+        </label>
+        <label>Upload Digital Signature
+          <input id="regValidatorSignature" type="file" accept="image/*" />
+        </label>
+        <button type="submit" class="primary full">Submit Validator Profile</button>
+        <p id="validatorMessage" class="message"></p>
+      </form>
+    </div>
+  </section>
+
+  <section id="appShell" class="app-shell hidden">
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <div class="brand-mark small">JS</div>
+        <div>
+          <h2>Research Validator</h2>
+          <span id="roleBadge">Role</span>
+        </div>
+      </div>
+      <nav id="mainNav" class="main-nav" aria-label="Main navigation"></nav>
+      <div class="sidebar-footer">
+        <button id="lockBtn" class="ghost full">Lock App</button>
+        <small>Copyright © Dr. Joko Slamet</small>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar glass">
+        <div>
+          <p class="eyebrow" id="contextLine">Integrated Research Validation System</p>
+          <h1 id="pageTitle">Dashboard</h1>
+        </div>
+        <div class="top-actions">
+          <div class="project-switcher" id="projectSwitcherWrap">
+            <label for="activeProject">Active Project</label>
+            <select id="activeProject"></select>
+          </div>
+          <button id="newProjectQuick" class="soft">New Project</button>
+        </div>
+      </header>
+
+      <section id="identityStrip" class="identity-strip glass"></section>
+
+      <section id="dashboard" class="view active"></section>
+      <section id="metadata" class="view"></section>
+      <section id="instrument" class="view"></section>
+      <section id="validators" class="view"></section>
+      <section id="expert" class="view"></section>
+      <section id="revision" class="view"></section>
+      <section id="pilot" class="view"></section>
+      <section id="ethics" class="view"></section>
+      <section id="methodology" class="view"></section>
+      <section id="manuscript" class="view"></section>
+      <section id="reports" class="view"></section>
+      <section id="validatorProfile" class="view"></section>
+      <section id="admin" class="view"></section>
+    </main>
+  </section>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>
